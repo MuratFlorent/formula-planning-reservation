@@ -6,15 +6,13 @@
  * Author: Ton copilote du matin
  */
 
-// Sécurité
 if (!defined('ABSPATH')) exit;
 
-// Définir les chemins utiles
 define('FPR_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FPR_PLUGIN_URL', plugin_dir_url(__FILE__));
 
-// Inclure la classe d'initialisation
 require_once FPR_PLUGIN_DIR . 'includes/class-init.php';
 
-// Démarrer le plugin
+register_activation_hook(__FILE__, ['FPR\Init', 'create_cart_page_if_needed']);
+
 \FPR\Init::register();

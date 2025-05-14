@@ -1,0 +1,148 @@
+.wcs-class:not(.wcs-class--term-pas-de-cours) {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.wcs-class:not(.wcs-class--term-pas-de-cours):hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.wcs-class.wcs-class--term-pas-de-cours {
+    pointer-events: none;
+}
+
+.wcs-class.wcs-class--term-pas-de-cours small,
+.wcs-class.wcs-class--term-pas-de-cours span,
+.wcs-class.wcs-class--term-pas-de-cours .wcs-class__duration,
+.wcs-class.wcs-class--term-pas-de-cours .wcs-class__time {
+    opacity: 0;
+}
+
+@media only screen and (max-width: 991px) {
+    .wcs-class.wcs-class--term-pas-de-cours {
+        display: none !important;
+    }
+}
+
+.wcs-class small,
+.wcs-class .wcs-class__duration,
+.wcs-class .wcs-class__time,
+.wcs-class .wcs-class__instructor {
+    font-weight: bold;
+    color: #F8F8F8 !important;
+}
+
+.wcs-timetable__week .wcs-day .wcs-timetable__classes .wcs-class .wcs-class__time {
+    flex-grow: 1;
+    text-align: left;
+}
+
+@media only screen and (max-width: 1291px) {
+    .wcs-timetable__week .wcs-day .wcs-timetable__classes .wcs-class .wcs-class__time {
+        margin: 0 20px;
+    }
+}
+
+.fpr-selected {
+    border: 2px solid #28a745 !important;
+    background-color: rgba(40, 167, 69, 0.15) !important;
+    box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.4);
+    transition: box-shadow 0.2s ease;
+}
+
+.fpr-selected small,
+.fpr-selected .wcs-class__duration,
+.fpr-selected .wcs-class__time,
+.fpr-selected .wcs-class__instructor {
+    color: #000 !important;
+}
+
+
+
+/* Bouton flottant de validation */
+#fpr-float-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #5cb85c;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    display: none;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+#fpr-float-button button {
+    margin-left: 15px;
+    background: white;
+    color: #5cb85c;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+#fpr-float-button button:hover {
+    background: #e0ffe0;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    #fpr-float-button {
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 10px 14px;
+        font-size: 14px;
+        bottom: 15px;
+        right: 15px;
+        gap: 6px;
+    }
+
+    #fpr-float-button button {
+        padding: 5px 10px;
+        font-size: 13px;
+        border-radius: 15px;
+        width: auto;
+    }
+}
+
+
+#fpr-toast {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 16px;
+    position: fixed;
+    z-index: 9999;
+    right: 30px;
+    bottom: 90px;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.5s, bottom 0.5s;
+}
+
+#fpr-toast.show {
+    visibility: visible;
+    opacity: 1;
+    bottom: 110px;
+}
+
+.fpr-excluded {
+    border: 2px dashed #d9534f !important;
+}
+
