@@ -53,7 +53,8 @@ class Init {
 			'woocommerce',
 			'amelia',
 			'mailer',
-			'wootoamelia' // ✅ Ajout ici
+			'wootoamelia',
+			'emailhandler',
 		];
 
 		foreach ($modules as $module) {
