@@ -5,12 +5,13 @@ namespace FPR\Modules;
 use FPR\Helpers\ProductMapper;
 
 class WooCommerce {
-	public static function init() {
-		add_filter('woocommerce_add_cart_item_data', [__CLASS__, 'inject_selected_courses'], 10, 2);
-		add_filter('woocommerce_get_item_data', [__CLASS__, 'display_courses_in_cart'], 10, 2);
-		add_action('woocommerce_checkout_create_order_line_item', [__CLASS__, 'add_courses_to_order'], 10, 4);
-		add_action('template_redirect', [__CLASS__, 'redirect_default_cart_page']);
-	}
+ public static function init() {
+ 	add_filter('woocommerce_add_cart_item_data', [__CLASS__, 'inject_selected_courses'], 10, 2);
+ 	// Removed display_courses_in_cart hook to avoid conflict with WooCommerceHandler
+ 	// add_filter('woocommerce_get_item_data', [__CLASS__, 'display_courses_in_cart'], 10, 2);
+ 	add_action('woocommerce_checkout_create_order_line_item', [__CLASS__, 'add_courses_to_order'], 10, 4);
+ 	add_action('template_redirect', [__CLASS__, 'redirect_default_cart_page']);
+ }
 
 	public static function inject_selected_courses($cart_item_data, $product_id) {
 		if (!WC()->session) return $cart_item_data;

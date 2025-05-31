@@ -1,0 +1,334 @@
+/* subscribers.css - Styles pour l'interface de gestion des abonnés */
+
+/* Styles généraux pour la page des abonnés */
+.fpr-form {
+    max-width: 100%;
+    margin-bottom: 30px;
+}
+
+.fpr-form .form-table {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    padding: 25px;
+    margin-top: 15px;
+}
+
+.fpr-form .form-table th {
+    padding: 12px 15px;
+    font-weight: 500;
+    color: #444;
+    font-family: 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+.fpr-form .form-table td {
+    padding: 12px 15px;
+}
+
+/* Styles pour les champs de formulaire - plus élégants et légers, sans bordure */
+.fpr-form input[type="text"],
+.fpr-form input[type="number"],
+.fpr-form input[type="date"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    color: #444;
+}
+
+.fpr-form input[type="text"]:hover,
+.fpr-form input[type="number"]:hover,
+.fpr-form input[type="date"]:hover {
+    background-color: #f1f3f5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.fpr-form input[type="text"]:focus,
+.fpr-form input[type="number"]:focus,
+.fpr-form input[type="date"]:focus {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.15);
+    outline: none;
+}
+
+/* Styles pour le bouton d'ajout */
+#fpr-add-user {
+    margin: 10px 0 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#fpr-add-user:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+#fpr-add-user .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+/* Styles pour la modal utilisateur */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    display: none;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99998;
+}
+
+.modal.fade .modal-dialog {
+    transform: translate(0, -50px);
+    transition: transform 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+    transform: translate(0, 0);
+}
+
+.modal.show {
+    display: block;
+    padding-right: 17px;
+}
+
+.modal-dialog {
+    position: relative;
+    width: 95%;
+    max-width: 800px;
+    margin: 30px auto;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+.modal-dialog.modal-lg {
+    max-width: 800px;
+    width: 95%;
+}
+
+.modal-dialog-centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100% - 3.5rem);
+    margin: 1.75rem auto;
+    position: relative;
+    width: 100%;
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+    outline: 0;
+    overflow-y: visible;
+    margin: 0 auto;
+}
+
+/* Assurer que tous les éléments à l'intérieur du modal-content sont interactifs */
+.modal-content * {
+    pointer-events: auto;
+}
+
+.modal-header {
+    background-color: #3498db;
+    color: white;
+    border-radius: 12px 12px 0 0;
+    padding: 15px 20px;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal-title {
+    font-weight: 500;
+    font-size: 18px;
+    font-family: 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    margin: 0;
+}
+
+.modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 25px;
+    overflow: visible;
+}
+
+/* Ensure form elements in the modal are visible */
+#fpr-form-container {
+    width: 100%;
+    overflow: visible;
+}
+
+#fpr-form-container .fpr-form {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.modal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 15px 20px;
+    border-top: 1px solid #e9ecef;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.btn-close {
+    box-sizing: content-box;
+    width: 1em;
+    height: 1em;
+    padding: 0.25em;
+    color: #fff;
+    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+    border: 0;
+    border-radius: 0.25rem;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.btn-close:hover {
+    opacity: 1;
+}
+
+/* Ensure the modal backdrop is properly displayed */
+.modal-backdrop {
+    opacity: 0.5;
+}
+
+.modal-backdrop.show {
+    opacity: 0.5;
+}
+
+/* Additional styles to ensure the modal is properly displayed */
+.modal.fade.show {
+    display: block !important;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#fprUserModal {
+    display: block;
+}
+
+#fprUserModal .modal-dialog {
+    transform: none !important;
+}
+
+/* Fix for Bootstrap modal in WordPress admin */
+body.modal-open {
+    overflow: hidden;
+    padding-right: 0 !important;
+}
+
+/* Styles pour les boutons */
+.fpr-form .button {
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+.fpr-form .button-primary {
+    background-color: #3498db;
+    color: white;
+}
+
+.fpr-form .button-primary:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.fpr-form .button-secondary {
+    background-color: #f8f9fa;
+    color: #3498db;
+    border: 1px solid rgba(52, 152, 219, 0.2);
+}
+
+.fpr-form .button-secondary:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles pour le conteneur de formulaire dans le modal */
+#fpr-form-container .fpr-form {
+    margin-bottom: 0;
+}
+
+#fpr-form-container .form-table {
+    box-shadow: none;
+    padding: 0;
+    margin-top: 0;
+}
+
+/* Styles responsifs */
+@media (max-width: 768px) {
+    .fpr-form .form-table,
+    .fpr-form .form-table tbody,
+    .fpr-form .form-table tr,
+    .fpr-form .form-table th,
+    .fpr-form .form-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .fpr-form .form-table th {
+        padding-bottom: 5px;
+    }
+
+    .fpr-form .form-table td {
+        padding-top: 5px;
+        padding-bottom: 15px;
+    }
+
+    .modal-dialog.modal-lg {
+        max-width: 95%;
+        margin: 10px auto;
+    }
+}

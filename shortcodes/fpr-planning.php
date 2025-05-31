@@ -7,7 +7,7 @@ function render_planning_shortcode() {
 	?>
     <div class="fpr-planning-wrapper">
     </div>
-    <div id="fpr-toast">Vos cours ont bien été enregistrés !</div>
+    <div id="fpr-toast" style="visibility: hidden;">Vos cours ont bien été enregistrés !</div>
 
 	<?php
 	return ob_get_clean();

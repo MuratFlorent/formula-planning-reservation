@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS {prefix}fpr_customer_subscriptions (
+    id mediumint(9) NOT NULL AUTO_INCREMENT,
+    user_id bigint(20) NOT NULL,
+    order_id bigint(20) NOT NULL,
+    payment_plan_id mediumint(9) NOT NULL,
+    saison_id mediumint(9) NOT NULL,
+    stripe_subscription_id varchar(255),
+    status varchar(50) NOT NULL DEFAULT 'active',
+    start_date date NOT NULL,
+    next_payment_date date,
+    end_date date,
+    total_amount decimal(10,2) NOT NULL,
+    installment_amount decimal(10,2) NOT NULL,
+    installments_paid int(11) NOT NULL DEFAULT 0,
+    created_at datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    KEY user_id (user_id),
+    KEY order_id (order_id),
+    KEY payment_plan_id (payment_plan_id),
+    KEY saison_id (saison_id)
+) {charset_collate};

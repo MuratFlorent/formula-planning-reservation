@@ -6,13 +6,13 @@ if (!current_user_can('manage_options')) {
 }
 
 // Traitement de la soumission du formulaire
-if (isset($_POST['fpr_excluded_classes']) && is_array($_POST['fpr_excluded_classes'])) {
-	update_option('fpr_excluded_classes', array_map('sanitize_text_field', $_POST['fpr_excluded_classes']));
+if (isset($_POST['fpr_excluded_courses']) && is_array($_POST['fpr_excluded_courses'])) {
+	update_option('fpr_excluded_courses', array_map('sanitize_text_field', $_POST['fpr_excluded_courses']));
 	echo '<div class="updated"><p>Exclusions mises à jour !</p></div>';
 }
 
 // Récupérer la liste des exclusions
-$excluded = get_option('fpr_excluded_classes', []);
+$excluded = get_option('fpr_excluded_courses', []);
 
 // Récupérer les titres des classes Amelia (ou autre plugin si à terme)
 // Ici on simule avec des titres statiques pour l'exemple
@@ -37,7 +37,7 @@ $available_classes = [
 				<tr>
 					<th scope="row">
 						<label>
-							<input type="checkbox" name="fpr_excluded_classes[]" value="<?php echo esc_attr($title); ?>" <?php checked(in_array($title, $excluded)); ?>>
+							<input type="checkbox" name="fpr_excluded_courses[]" value="<?php echo esc_attr($title); ?>" <?php checked(in_array($title, $excluded)); ?>>
 							<?php echo esc_html($title); ?>
 						</label>
 					</th>

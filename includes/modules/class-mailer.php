@@ -58,15 +58,80 @@ class Mailer {
 		]);
 	}
 
-	public static function notify_admin($prenom, $nom, $events, $formula, $price, $order_number) {
+ public static function notify_admin($prenom, $nom, $events, $formula, $price, $order_number) {
+		// Récupérer l'email de l'administrateur avec une adresse de secours
 		$admin_email = get_option('admin_email');
+
+		// Si l'email admin n'est pas défini, utiliser une adresse par défaut
+		if (empty($admin_email) || !is_email($admin_email)) {
+			$admin_email = 'contact@choreame.fr';
+			\FPR\Helpers\Logger::log("[Mailer] ⚠️ Email admin non défini ou invalide, utilisation de l'adresse par défaut: $admin_email");
+		} else {
+			\FPR\Helpers\Logger::log("[Mailer] ✅ Utilisation de l'email admin: $admin_email");
+		}
+
+		// Récupérer les informations du plan de paiement si disponible
+		$payment_plan_info = '';
+		$payment_plan_id = get_post_meta($order_number, '_fpr_selected_payment_plan', true);
+		if (!empty($payment_plan_id)) {
+			global $wpdb;
+			$payment_plan = $wpdb->get_row($wpdb->prepare(
+				"SELECT * FROM {$wpdb->prefix}fpr_payment_plans WHERE id = %d",
+				$payment_plan_id
+			));
+
+			if ($payment_plan) {
+				$term_text = !empty($payment_plan->term) ? '/' . $payment_plan->term : '';
+				if (empty($term_text)) {
+					$frequency_label = [
+						'hourly' => '/heure',
+						'daily' => '/jour',
+						'weekly' => '/sem',
+						'monthly' => '/mois',
+						'quarterly' => '/trim',
+						'annual' => '/an'
+					];
+					$term_text = isset($frequency_label[$payment_plan->frequency]) ? $frequency_label[$payment_plan->frequency] : '';
+				}
+				$payment_plan_info = $payment_plan->name . ' (' . $payment_plan->installments . ' versements' . ($term_text ? ' ' . $term_text : '') . ')';
+			}
+		}
+
+		// Récupérer les informations de contact du client
+		$order = wc_get_order($order_number);
+		$email = '';
+		$phone = '';
+		if ($order) {
+			$email = $order->get_billing_email();
+			$phone = $order->get_billing_phone();
+		}
+
+		// Envoyer la notification de réservation standard
 		self::send_email_with_template($admin_email, 'Nouvelle réservation', 'admin-booking-notification.php', [
 			'firstName' => $prenom,
 			'lastName' => $nom,
+			'email' => $email,
+			'phone' => $phone,
 			'events' => $events,
 			'formula' => $formula,
 			'price' => $price,
-			'order_number' => $order_number
+			'order_number' => $order_number,
+			'payment_plan_info' => $payment_plan_info,
+			'order_date' => date_i18n('d/m/Y à H:i')
+		]);
+
+		// Envoyer la notification détaillée avec les informations de formule et cours
+		self::send_email_with_template($admin_email, 'Détails de formule et cours - ' . $prenom . ' ' . $nom, 'admin-formula-notification.php', [
+			'firstName' => $prenom,
+			'lastName' => $nom,
+			'email' => $email,
+			'phone' => $phone,
+			'events' => $events,
+			'formula' => $formula,
+			'price' => $price,
+			'order_number' => $order_number,
+			'payment_plan_info' => $payment_plan_info,
+			'order_date' => date_i18n('d/m/Y à H:i')
 		]);
 	}
 }

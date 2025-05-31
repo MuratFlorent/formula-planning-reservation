@@ -19,6 +19,25 @@ class Init {
 		require_once FPR_PLUGIN_DIR . 'includes/admin/class-settings.php';
 		\FPR\Admin\Settings::init();
 
+		require_once FPR_PLUGIN_DIR . 'includes/admin/class-saisons.php';
+		\FPR\Admin\Saisons::init();
+
+		require_once FPR_PLUGIN_DIR . 'includes/admin/class-payment-plans.php';
+		\FPR\Admin\PaymentPlans::init();
+
+		require_once FPR_PLUGIN_DIR . 'includes/admin/class-product-payment-plans.php';
+		\FPR\Admin\ProductPaymentPlans::init();
+
+		require_once FPR_PLUGIN_DIR . 'includes/admin/class-orders.php';
+		\FPR\Admin\Orders::init();
+
+		require_once FPR_PLUGIN_DIR . 'includes/admin/class-subscribers.php';
+		\FPR\Admin\Subscribers::init();
+
+		require_once FPR_PLUGIN_DIR . 'includes/admin/class-migration.php';
+		\FPR\Admin\Migration::init();
+
+
 		// Ajout de classes personnalisées au <body>
 		add_filter('body_class', [__CLASS__, 'add_fpr_body_classes']);
 
@@ -43,6 +62,7 @@ class Init {
 		});
 
 		require_once FPR_PLUGIN_DIR . 'includes/admin/class-debugcheckup.php';
+		\FPR\Admin\DebugCheckup::init();
 
 	}
 
@@ -53,8 +73,15 @@ class Init {
 			'woocommerce',
 			'amelia',
 			'mailer',
+			'woocommerce-handler',
 			'wootoamelia',
 			'emailhandler',
+			'stripe-handler',
+			'user-registration',
+			'fpr-amelia',
+			'fpr-user',
+			'invoice-handler',
+			'course-handler',
 		];
 
 		foreach ($modules as $module) {
@@ -84,8 +111,8 @@ class Init {
 				true
 			);
 
-			// Préparation des exclusions
-			$excluded_courses_raw = get_option('fpr_excluded_classes', '');
+			// Préparation des exclusions - utiliser uniquement fpr_excluded_courses
+			$excluded_courses_raw = get_option('fpr_excluded_courses', '');
 			if (is_array($excluded_courses_raw)) {
 				$excluded_courses_raw = implode("\n", $excluded_courses_raw); // sécurité si l’option est accidentellement un array
 			}
@@ -95,9 +122,8 @@ class Init {
 			Logger::log('🧪 fpr_excluded_courses_raw: ' . $excluded_courses_raw);
 			Logger::log('📋 fpr_excluded_courses final: ' . print_r($excluded_courses, true));
 
-
 			wp_localize_script('fpr-calendar-js', 'fprAjax', [
-				'ajax_url' => admin_url('admin-ajax.php'),
+				'ajaxurl' => admin_url('admin-ajax.php'),
 				'excluded_courses' => array_map('strtolower', $excluded_courses),
 			]);
 
@@ -108,18 +134,80 @@ class Init {
 		}
 
 		if ($current_page === 'mon-panier') {
-			wp_enqueue_script(
-				'fpr-cart-js',
-				FPR_PLUGIN_URL . 'assets/js/cart.js',
-				['jquery'],
-				null,
-				true
-			);
+			// We're using cart-loader.js instead of cart.js to avoid duplication
+			// of course information display
 
 			wp_enqueue_style(
 				'fpr-cart-css',
 				FPR_PLUGIN_URL . 'assets/css/cart.css'
 			);
+		}
+
+		// Charger les assets de transition et d'amélioration UI sur toutes les pages du site
+		wp_enqueue_script(
+			'fpr-cart-loader-js',
+			FPR_PLUGIN_URL . 'assets/js/cart-loader.js',
+			['jquery'],
+			null,
+			true
+		);
+
+		// Localiser le script pour rendre ajaxurl et nonce disponibles
+		$cart_loader_data = [
+			'ajaxurl' => admin_url('admin-ajax.php'),
+			'nonce' => wp_create_nonce('fpr-save-payment-plan')
+		];
+
+		// Si on a des cours exclus, les ajouter aussi au cart loader
+		if (isset($excluded_courses) && !empty($excluded_courses)) {
+			$cart_loader_data['excluded_courses'] = array_map('strtolower', $excluded_courses);
+		}
+
+		wp_localize_script('fpr-cart-loader-js', 'fprAjax', $cart_loader_data);
+
+		wp_enqueue_style(
+			'fpr-cart-loader-css',
+			FPR_PLUGIN_URL . 'assets/css/cart-loader.css'
+		);
+
+		// Charger des styles spécifiques pour la page de checkout
+		if (is_checkout()) {
+			// Charger le fichier CSS dédié pour la page de commande
+			wp_enqueue_style(
+				'fpr-checkout-css',
+				FPR_PLUGIN_URL . 'assets/css/checkout.css'
+			);
+		}
+
+		// Charger des styles spécifiques pour la page panier (plans de paiement)
+		if (is_cart()) {
+			wp_enqueue_style(
+				'fpr-payment-plans-css',
+				FPR_PLUGIN_URL . 'assets/css/payment-plans.css'
+			);
+		}
+
+		// Charger des styles spécifiques pour la page de confirmation de commande
+		if (is_wc_endpoint_url('order-received')) {
+			wp_add_inline_style('fpr-cart-loader-css', '
+				.woocommerce-order {
+					animation: fpr-fade-in 0.8s ease-in-out;
+				}
+				.woocommerce-order-overview {
+					background-color: #f9f9f9;
+					padding: 20px;
+					border-radius: 5px;
+					box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+				}
+				.woocommerce-order-details {
+					margin-top: 30px;
+				}
+				.woocommerce-thankyou-order-received {
+					font-size: 24px;
+					color: #3498db;
+					margin-bottom: 20px;
+				}
+			');
 		}
 	}
 
@@ -140,13 +228,60 @@ class Init {
 				'post_name'    => 'mon-panier',
 				'post_status'  => 'publish',
 				'post_type'    => 'page',
-				'post_content' => '[woocommerce_cart]<div id="fpr-selection-preview"></div>',
+				'post_content' => '[woocommerce_cart]',
 			]);
 
 			if ($page_id) {
 				update_post_meta($page_id, '_wp_page_template', 'default');
 			}
 		}
+	}
+
+	/**
+	 * Exécute les scripts SQL d'installation du plugin
+	 */
+	public static function run_installation_sql() {
+		global $wpdb;
+
+		// Charger les fichiers SQL
+		$sql_files = [
+			'create_payment_plans_table.sql',
+			'create_saisons_table.sql',
+			'create_customer_subscriptions_table.sql',
+			'create_product_payment_plans.sql',
+			'create_fpr_events_table.sql',
+			'create_fpr_events_tags_table.sql',
+			'create_fpr_events_periods_table.sql',
+			'create_fpr_customers_table.sql',
+			'create_fpr_customer_bookings_table.sql',
+			'create_fpr_users_table.sql',
+			'create_fpr_invoices_table.sql',
+			'create_fpr_courses_table.sql',
+			'create_fpr_subscription_courses_table.sql'
+		];
+
+		foreach ($sql_files as $sql_file) {
+			$sql_path = FPR_PLUGIN_DIR . 'sql/' . $sql_file;
+
+			if (file_exists($sql_path)) {
+				// Lire le contenu du fichier SQL
+				$sql_content = file_get_contents($sql_path);
+
+				// Remplacer les variables
+				$sql_content = str_replace('{prefix}', $wpdb->prefix, $sql_content);
+				$sql_content = str_replace('{charset_collate}', $wpdb->get_charset_collate(), $sql_content);
+
+				// Exécuter les requêtes SQL
+				require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+				dbDelta($sql_content);
+
+				\FPR\Helpers\Logger::log("[Installation] ✅ Script SQL exécuté: $sql_file");
+			} else {
+				\FPR\Helpers\Logger::log("[Installation] ❌ Fichier SQL introuvable: $sql_file");
+			}
+		}
+
+		\FPR\Helpers\Logger::log("[Installation] ✅ Installation SQL terminée");
 	}
 
 	// Ajout de classes body (planning, mon-panier...)

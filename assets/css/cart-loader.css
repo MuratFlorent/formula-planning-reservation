@@ -1,0 +1,787 @@
+/* cart-loader.css - Styles pour les transitions et l'affichage du panier */
+
+/* Améliorations UI/UX pour la page panier */
+/* Amélioration du bouton "Selectionner d'autres cours" */
+.woocommerce a.button.button-secondary {
+    background-color: #3498db;
+    color: white;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: none;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+.woocommerce a.button.button-secondary:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Amélioration de la croix de suppression */
+.woocommerce-cart table.cart td.product-remove a.remove {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    color: white !important;
+    background-color: #e74c3c;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.woocommerce-cart table.cart td.product-remove a.remove:hover {
+    background-color: #c0392b !important;
+    transform: rotate(90deg);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Centrage du bouton "Valider la commande" */
+.wc-proceed-to-checkout {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.wc-proceed-to-checkout a.checkout-button {
+    width: 80%;
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Styles pour les termes de paiement dans le checkout */
+.fpr-payment-term {
+    font-size: 0.9em;
+    opacity: 0.8;
+    margin-left: 4px;
+}
+
+/* Styles pour le sélecteur de plan de paiement dans le sidebar */
+.fpr-payment-plan-selector {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    border: 1px solid #e2e8f0;
+}
+
+.fpr-payment-plan-selector h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.fpr-payment-plan-selector select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+/* Styles pour le bloc de résumé dans le sidebar */
+.fpr-sidebar-summary {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    border-left: 3px solid #3498db;
+}
+
+.fpr-sidebar-summary p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.fpr-sidebar-summary .fpr-plan-name {
+    font-weight: 600;
+    color: #3498db;
+}
+
+/* Style pour le sous-total en ligne sous le prix */
+.woocommerce-cart .cart-subtotal-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #eee;
+}
+
+.woocommerce-cart .cart-subtotal-row .subtotal-label {
+    font-weight: 600;
+    color: #555;
+    margin-right: 10px;
+}
+
+.woocommerce-cart .cart-subtotal-row .subtotal-value {
+    font-weight: 700;
+    color: #3498db;
+}
+
+/* Amélioration de l'espacement entre les blocs */
+.woocommerce-cart-form {
+    margin-bottom: 40px;
+}
+
+.cart_totals {
+    padding: 0;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    margin: 0 auto !important;
+    max-width: 500px;
+    float: none !important;
+    width: 100%;
+}
+
+.cart_totals h2 {
+    margin-top: 0;
+    padding: 15px 20px;
+    background-color: #3498db;
+    color: white !important;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 0;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* Styling for the table inside cart_totals */
+.cart_totals table {
+    width: 100%;
+    margin-bottom: 0 !important;
+}
+
+.cart_totals table th,
+.cart_totals table td {
+    padding: 15px 20px !important;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.cart_totals table th {
+    font-weight: 500;
+    color: #555;
+    width: 40%;
+}
+
+.cart_totals table td {
+    font-weight: 600;
+    text-align: right;
+}
+
+.cart_totals .order-total th,
+.cart_totals .order-total td {
+    border-top: 1px solid #eee;
+    border-bottom: none;
+    padding-top: 20px !important;
+}
+
+.cart_totals .order-total td .woocommerce-Price-amount {
+    color: #3498db;
+    font-size: 1.2em;
+}
+
+/* Loader de page */
+.fpr-page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fpr-loader-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: fpr-spin 1s linear infinite;
+}
+
+.fpr-loader-text {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #333;
+}
+
+@keyframes fpr-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Animation des éléments du panier */
+.fpr-fade-in {
+    opacity: 0;
+    animation: fpr-fade-in 0.5s ease-in-out forwards;
+}
+
+@keyframes fpr-fade-in {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Centrage et amélioration du conteneur principal */
+.woocommerce-cart .woocommerce {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Styles pour le récapitulatif des cours */
+.fpr-selected-courses-summary {
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #fdfeff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 16%);
+    border-top: 4px solid #2c6e9b;
+    transition: all 0.3s ease;
+    max-width: 900px;
+}
+
+.fpr-selected-courses-summary:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.fpr-selected-courses-summary h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-size: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 12px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.fpr-courses-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fpr-course-item {
+    padding: 15px 18px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    border-left: 4px solid #3498db;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.fpr-course-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.fpr-course-item:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, #3498db, #2980b9);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.fpr-course-item:hover:after {
+    opacity: 1;
+}
+
+.fpr-course-title {
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 8px;
+    color: #2c3e50;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 8px;
+}
+
+.fpr-course-details {
+    font-size: 14px;
+    color: #555;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+}
+
+.fpr-course-day, .fpr-course-time, .fpr-course-duration, .fpr-course-instructor {
+    display: inline-block;
+    padding: 3px 0;
+}
+
+.fpr-course-day {
+    font-weight: 500;
+    color: #3498db;
+}
+
+.fpr-course-time {
+    color: #e74c3c;
+}
+
+.fpr-course-duration {
+    color: #27ae60;
+}
+
+.fpr-course-instructor {
+    font-style: italic;
+}
+
+/* Amélioration du bouton de validation */
+.woocommerce #respond input#submit.alt, 
+.woocommerce a.button.alt, 
+.woocommerce button.button.alt, 
+.woocommerce input.button.alt {
+    background-color: #3498db;
+    transition: all 0.3s ease;
+}
+
+.woocommerce #respond input#submit.alt:hover, 
+.woocommerce a.button.alt:hover, 
+.woocommerce button.button.alt:hover, 
+.woocommerce input.button.alt:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Amélioration de l'affichage des produits dans le panier */
+.woocommerce-cart table.cart {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+/* Masquer les colonnes product-remove, product-thumbnail, product-quantity et product-subtotal */
+.woocommerce-cart table.cart th.product-remove,
+.woocommerce-cart table.cart th.product-thumbnail,
+.woocommerce-cart table.cart th.product-quantity,
+.woocommerce-cart table.cart th.product-subtotal,
+.woocommerce-cart table.cart td.product-remove,
+.woocommerce-cart table.cart td.product-thumbnail,
+.woocommerce-cart table.cart td.product-quantity,
+.woocommerce-cart table.cart td.product-subtotal {
+    display: none;
+}
+
+.woocommerce-cart table.cart thead th {
+    background-color: #3498db;
+    color: white;
+    padding: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.woocommerce-cart table.cart td {
+    padding: 15px;
+    vertical-align: middle;
+    border-bottom: 1px solid #eee;
+}
+
+.woocommerce-cart table.cart td.product-name {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 16px;
+    position: relative;
+    padding-right: 40px;
+}
+
+/* Bouton de suppression stylé à côté du nom du produit */
+.woocommerce-cart table.cart td.product-name a.product-remove {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    color: #e74c3c;
+    background-color: transparent;
+    border: 1px solid #e74c3c;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.woocommerce-cart table.cart td.product-name a.product-remove:hover {
+    background-color: #e74c3c;
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.woocommerce-cart table.cart td.product-name dl.variation {
+    margin-top: 12px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border-left: 3px solid #3498db;
+}
+
+.woocommerce-cart table.cart td.product-name dl.variation dt {
+    font-weight: 600;
+    color: #3498db;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.woocommerce-cart table.cart td.product-name dl.variation dd {
+    margin-bottom: 12px;
+    padding-left: 12px;
+    border-left: 2px solid #e0e0e0;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.woocommerce-cart table.cart td.product-name dl.variation dd:last-child {
+    margin-bottom: 0;
+}
+
+.woocommerce-cart table.cart td.product-name dl.variation p {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Styles pour les boutons de la page de commande */
+.wc-block-checkout__actions_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    gap: 15px;
+}
+
+/* Style pour le bouton "Retour au panier" */
+.wc-block-components-checkout-return-to-cart-button {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    color: #3498db;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.wc-block-components-checkout-return-to-cart-button:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.wc-block-components-checkout-return-to-cart-button svg {
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+}
+
+.wc-block-components-checkout-return-to-cart-button:hover svg {
+    transform: translateX(-3px);
+}
+
+/* Style pour le bouton "Commander" */
+.wc-block-components-checkout-place-order-button {
+    padding: 12px 25px !important;
+    background-color: #3498db !important;
+    color: white !important;
+    border-radius: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease !important;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative !important;
+    overflow: hidden;
+}
+
+.wc-block-components-checkout-place-order-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Loader pour le bouton Commander */
+.wc-block-components-checkout-place-order-button.is-loading {
+    color: transparent;
+}
+
+.wc-block-components-checkout-place-order-button.is-loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: button-spin 1s linear infinite;
+}
+
+@keyframes button-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Styles pour la page de confirmation de commande */
+.fpr-order-received-page .woocommerce-order {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border-top: 4px solid #3498db;
+    transition: all 0.3s ease;
+}
+
+.fpr-order-received-page .woocommerce-notice {
+    font-size: 24px;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.fpr-order-received-page .woocommerce-order-overview {
+    display: flex;
+    background: white;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 -10px 30px !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+.fpr-order-received-page .woocommerce-order-overview li {
+    flex: 1 1 200px;
+    margin: 10px !important;
+    padding: 15px !important;
+    background-color: #fff;
+    border-radius: 8px;
+    border-left: 3px solid #3498db;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.fpr-order-received-page .woocommerce-order-overview strong {
+    display: block;
+    font-size: 16px;
+    color: #3498db;
+    margin-bottom: 5px;
+}
+
+.fpr-order-received-page .woocommerce-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.fpr-order-received-page .woocommerce-table th {
+    background-color: #3498db;
+    color: white;
+    padding: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.fpr-order-received-page .woocommerce-table td {
+    padding: 15px;
+    vertical-align: middle;
+    border-bottom: 1px solid #eee;
+}
+
+/* Style pour le bouton "Retour au planning" */
+.fpr-back-to-planning-button {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: #3498db;
+    color: white !important;
+    border-radius: 30px;
+    text-decoration: none !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+    width: fit-content;
+    font-size: 16px;
+}
+
+.fpr-back-to-planning-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    color: white;
+    text-decoration: none;
+}
+
+.fpr-back-to-planning-button svg {
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.fpr-back-to-planning-button:hover svg {
+    transform: translateX(-3px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .fpr-selected-courses-summary {
+        padding: 15px;
+        margin: 20px 0;
+    }
+
+    .fpr-selected-courses-summary h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .fpr-course-item {
+        padding: 12px;
+        margin-bottom: 10px;
+    }
+
+    .fpr-course-title {
+        font-size: 15px;
+        padding-bottom: 6px;
+        margin-bottom: 6px;
+    }
+
+    .fpr-course-details {
+        font-size: 13px;
+    }
+
+    /* Responsive styles for cart totals */
+    .cart_totals {
+        max-width: 100%;
+    }
+
+    .cart_totals h2 {
+        font-size: 16px;
+        padding: 12px 15px;
+    }
+
+    .cart_totals table th,
+    .cart_totals table td {
+        padding: 12px 15px !important;
+    }
+
+    .cart_totals .order-total td .woocommerce-Price-amount {
+        font-size: 1.1em;
+    }
+
+    .wc-proceed-to-checkout a.checkout-button {
+        width: 100%;
+    }
+
+    .woocommerce-cart table.cart thead th {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .woocommerce-cart table.cart td {
+        padding: 10px;
+    }
+
+    .woocommerce-cart table.cart td.product-name {
+        font-size: 14px;
+    }
+
+    .woocommerce-cart table.cart td.product-name dl.variation {
+        padding: 10px;
+        margin-top: 8px;
+    }
+
+    .woocommerce-cart table.cart td.product-name dl.variation dt,
+    .woocommerce-cart table.cart td.product-name dl.variation dd {
+        font-size: 12px;
+    }
+
+    /* Responsive styles for order confirmation page */
+    .fpr-order-received-page .woocommerce-order {
+        padding: 15px;
+        margin: 15px auto;
+    }
+
+    .fpr-order-received-page .woocommerce-notice {
+        font-size: 20px;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+    }
+
+    .fpr-order-received-page .woocommerce-order-overview {
+        margin: 0 0 20px;
+    }
+
+    .fpr-order-received-page .woocommerce-order-overview li {
+        flex: 1 1 100%;
+        margin: 5px 0;
+        padding: 10px;
+    }
+
+    .fpr-order-received-page .woocommerce-table th,
+    .fpr-order-received-page .woocommerce-table td {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .fpr-back-to-planning-button {
+        padding: 10px 15px;
+        font-size: 14px;
+        margin-bottom: 15px;
+        width: 100%;
+        justify-content: center;
+    }
+}

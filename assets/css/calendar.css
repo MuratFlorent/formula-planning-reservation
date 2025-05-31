@@ -41,8 +41,14 @@
 
 @media only screen and (max-width: 1291px) {
     .wcs-timetable__week .wcs-day .wcs-timetable__classes .wcs-class .wcs-class__time {
-        margin: 0 20px;
+        flex-grow: 1;
+        text-align: left;
+        margin: 0px 20px;
     }
+}
+
+.wcs-timetable--2 .wcs-timetable__week .wcs-day__title {
+    color: #f8f8f8;
 }
 
 .fpr-selected {
@@ -142,7 +148,50 @@
     bottom: 110px;
 }
 
+/* Styles pour les cours exclus - simplifié */
 .fpr-excluded {
-    border: 2px dashed #d9534f !important;
+    pointer-events: auto !important; /* Assure que les clics sont capturés */
+    cursor: not-allowed !important;
+    position: relative;
 }
 
+/* Empêcher l'agrandissement des cours exclus au survol */
+.fpr-excluded:hover {
+    transform: none !important; /* Annule l'effet d'agrandissement */
+    box-shadow: none !important; /* Supprime l'ombre portée */
+    height: auto !important; /* Maintient la hauteur */
+    background-color: inherit !important; /* Garde la couleur de fond d'origine */
+}
+
+/* Tooltip pour les cours exclus */
+.fpr-tooltip {
+    position: fixed; /* Position fixe par rapport à la fenêtre */
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 1000;
+    max-width: 250px;
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: normal;
+    /* La position sera définie par JavaScript */
+}
+
+.fpr-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+}
+
+.fpr-tooltip.show {
+    opacity: 1;
+}

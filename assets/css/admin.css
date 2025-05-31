@@ -1,0 +1,657 @@
+/* admin.css - Styles communs pour l'interface d'administration du plugin */
+
+/* Styles généraux pour les pages d'administration */
+body.wp-admin {
+    background-color: #f8f9fa;
+    color: #333;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    line-height: 1.6;
+}
+
+.wrap {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
+    padding: 25px 30px;
+    margin: 20px 20px 20px 0;
+    transition: all 0.3s ease;
+}
+
+.wrap h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1d2327;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.wrap h2 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #2271b1;
+    margin: 25px 0 15px;
+}
+
+.fpr-form {
+    max-width: 100%;
+    margin-bottom: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    padding: 25px;
+    transition: all 0.3s ease;
+}
+
+.fpr-form .form-table {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 5px 0;
+    margin-top: 15px;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.fpr-form .form-table th {
+    padding: 12px 15px;
+    font-weight: 500;
+    color: #444;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    vertical-align: top;
+    width: 200px;
+}
+
+.fpr-form .form-table td {
+    padding: 12px 15px;
+    vertical-align: middle;
+}
+
+/* Styles pour les champs de formulaire - plus élégants et légers */
+.fpr-form input[type="text"],
+.fpr-form input[type="number"],
+.fpr-form input[type="date"],
+.fpr-form input[type="email"],
+.fpr-form textarea,
+.fpr-form select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #f8fafc;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    color: #334155;
+}
+
+.fpr-form input[type="text"]:hover,
+.fpr-form input[type="number"]:hover,
+.fpr-form input[type="date"]:hover,
+.fpr-form input[type="email"]:hover,
+.fpr-form textarea:hover,
+.fpr-form select:hover {
+    background-color: #fff;
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.fpr-form input[type="text"]:focus,
+.fpr-form input[type="number"]:focus,
+.fpr-form input[type="date"]:focus,
+.fpr-form input[type="email"]:focus,
+.fpr-form textarea:focus,
+.fpr-form select:focus {
+    background-color: #fff;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+    outline: none;
+}
+
+/* Styles pour les boutons */
+.button,
+.fpr-form .button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.5;
+    text-decoration: none;
+}
+
+.button-primary,
+.fpr-form .button-primary {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.button-primary:hover,
+.fpr-form .button-primary:hover {
+    background-color: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-primary:active,
+.fpr-form .button-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.button-secondary,
+.fpr-form .button-secondary {
+    background-color: #f8fafc;
+    color: #3b82f6;
+    border: 1px solid #e2e8f0;
+}
+
+.button-secondary:hover,
+.fpr-form .button-secondary:hover {
+    background-color: #f1f5f9;
+    color: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-color: #cbd5e1;
+}
+
+.button-secondary:active,
+.fpr-form .button-secondary:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.button .dashicons,
+.fpr-form .button .dashicons {
+    margin-right: 5px;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+/* Style pour le bouton d'ajout */
+.fpr-add-button {
+    margin: 10px 0 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.fpr-add-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.fpr-add-button .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+/* Style pour les tableaux */
+.fpr-table,
+.wp-list-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    margin-top: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.fpr-table th,
+.wp-list-table th {
+    background-color: #3b82f6;
+    color: white;
+    font-weight: 600;
+    text-align: left;
+    padding: 14px 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    border-bottom: none;
+}
+
+.fpr-table td,
+.wp-list-table td {
+    padding: 14px 16px;
+    vertical-align: middle;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 14px;
+    color: #334155;
+    transition: background-color 0.2s ease;
+}
+
+.fpr-table tr:hover,
+.wp-list-table tr:hover {
+    background-color: #f8fafc;
+}
+
+.fpr-table tr:last-child td,
+.wp-list-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Style pour les boutons d'action dans les tableaux */
+.fpr-table .actions-column {
+    width: 150px;
+}
+
+.fpr-table .action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.fpr-table .action-buttons .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    font-size: 13px;
+    line-height: 1.5;
+    border-radius: 30px;
+    text-decoration: none;
+}
+
+.fpr-table .action-buttons .edit-button {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+.fpr-table .action-buttons .edit-button:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.fpr-table .action-buttons .delete-button {
+    background-color: #e74c3c;
+    color: white;
+    border-color: #e74c3c;
+}
+
+.fpr-table .action-buttons .delete-button:hover {
+    background-color: #c0392b;
+    border-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.fpr-table .action-buttons .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+/* Style pour les statuts */
+.fpr-status,
+.status-active,
+.status-pending,
+.status-inactive {
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 13px;
+    display: inline-block;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.fpr-status-active,
+.status-active {
+    background-color: #ecfdf5;
+    color: #10b981;
+}
+
+.fpr-status-active:hover,
+.status-active:hover {
+    background-color: #d1fae5;
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.1);
+}
+
+.fpr-status-pending,
+.status-pending {
+    background-color: #fff7ed;
+    color: #f59e0b;
+}
+
+.fpr-status-pending:hover,
+.status-pending:hover {
+    background-color: #ffedd5;
+    box-shadow: 0 2px 4px rgba(245, 158, 11, 0.1);
+}
+
+.fpr-status-inactive,
+.status-inactive {
+    background-color: #fef2f2;
+    color: #ef4444;
+}
+
+.fpr-status-inactive:hover,
+.status-inactive:hover {
+    background-color: #fee2e2;
+    box-shadow: 0 2px 4px rgba(239, 68, 68, 0.1);
+}
+
+.fpr-status-default {
+    background-color: #eff6ff;
+    color: #3b82f6;
+}
+
+.fpr-status-default:hover {
+    background-color: #dbeafe;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1);
+}
+
+/* Style pour le modal utilisateur */
+.user-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+}
+
+.user-modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 900px;
+    position: relative;
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.close-modal {
+    color: #94a3b8;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+
+.close-modal:hover {
+    color: #475569;
+}
+
+/* Style pour les formules dans la colonne Cours Amelia */
+.formula-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.formula-item {
+    background-color: #8b5cf6;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    display: inline-block;
+    margin-bottom: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.formula-item:hover {
+    background-color: #7c3aed;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Style pour le formulaire d'édition */
+.fpr-edit-form {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    padding: 25px;
+    margin-bottom: 30px;
+    max-width: 800px;
+}
+
+.fpr-edit-form h2 {
+    margin-top: 0;
+    color: #3498db;
+    font-family: 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+/* Style pour les onglets */
+.nav-tab-wrapper {
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 25px;
+    padding-bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+}
+
+.nav-tab {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 20px;
+    margin-left: 0;
+    margin-right: 4px;
+    margin-bottom: -1px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative;
+}
+
+.nav-tab:hover {
+    background-color: #fff;
+    color: #3b82f6;
+}
+
+.nav-tab-active {
+    background-color: #fff;
+    border-bottom: 1px solid #fff;
+    color: #3b82f6;
+    font-weight: 600;
+}
+
+.nav-tab-active:before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #3b82f6;
+    border-radius: 3px 3px 0 0;
+}
+
+/* Style pour les modals */
+.fpr-modal-content {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.fpr-modal-header {
+    background-color: #3b82f6;
+    color: white;
+    border-radius: 12px 12px 0 0;
+    padding: 16px 24px;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fpr-modal-title {
+    font-weight: 600;
+    font-size: 18px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    margin: 0;
+}
+
+.fpr-modal-body {
+    padding: 24px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* Style pour les tables de debug */
+.fpr-debug-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    margin-top: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.fpr-debug-table th, 
+.fpr-debug-table td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 14px;
+}
+
+.fpr-debug-table th {
+    background-color: #3b82f6;
+    color: white;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    letter-spacing: 0.3px;
+    border-bottom: none;
+}
+
+.fpr-debug-table tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.fpr-debug-table tr:hover {
+    background-color: #f1f5f9;
+}
+
+.fpr-debug-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Styles pour les notifications et messages */
+.notice {
+    background-color: #fff;
+    border-left: 4px solid #3b82f6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    padding: 12px 16px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+    animation: fadeIn 0.3s ease;
+}
+
+.notice-success {
+    border-left-color: #10b981;
+}
+
+.notice-error {
+    border-left-color: #ef4444;
+}
+
+.notice-warning {
+    border-left-color: #f59e0b;
+}
+
+.notice-info {
+    border-left-color: #3b82f6;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Styles responsifs */
+@media (max-width: 768px) {
+    .wrap {
+        padding: 20px 15px;
+        margin: 15px 15px 15px 0;
+    }
+
+    .fpr-form {
+        padding: 20px 15px;
+    }
+
+    .fpr-form .form-table,
+    .fpr-form .form-table tbody,
+    .fpr-form .form-table tr,
+    .fpr-form .form-table th,
+    .fpr-form .form-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .fpr-form .form-table th {
+        padding: 10px 10px 5px;
+    }
+
+    .fpr-form .form-table td {
+        padding: 5px 10px 15px;
+    }
+
+    .fpr-table .action-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .nav-tab-wrapper {
+        gap: 1px;
+    }
+
+    .nav-tab {
+        padding: 10px 15px;
+        font-size: 13px;
+    }
+}

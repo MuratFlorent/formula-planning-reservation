@@ -1,0 +1,39 @@
+/**
+ * Styles for the payment plans meta box in the product edit page
+ */
+
+.fpr-payment-plans-prices-wrapper {
+    margin: 10px 0;
+}
+
+.fpr-payment-plans-prices-wrapper table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.fpr-payment-plans-prices-wrapper th {
+    text-align: left;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+}
+
+.fpr-payment-plans-prices-wrapper td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.fpr-payment-plans-prices-wrapper tr:hover {
+    background-color: #f9f9f9;
+}
+
+.fpr-payment-plans-prices-wrapper input.wc_input_price {
+    width: 100%;
+    max-width: 200px;
+}
+
+.fpr-payment-plans-prices-wrapper p {
+    margin-bottom: 15px;
+    color: #555;
+}

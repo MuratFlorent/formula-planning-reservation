@@ -1,0 +1,308 @@
+/* checkout.css - Styles pour la page de commande */
+
+/* Style général du conteneur de checkout */
+.woocommerce-checkout .woocommerce {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: "Lato", sans-serif;
+}
+
+/* Titre principal */
+.woocommerce-checkout h1, 
+.woocommerce-checkout h2, 
+.woocommerce-checkout h3 {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Style du formulaire de checkout */
+.woocommerce-checkout .woocommerce-checkout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Colonnes du checkout */
+.woocommerce-checkout .col2-set {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Formulaire client */
+.woocommerce-checkout .woocommerce-billing-fields,
+.woocommerce-checkout .woocommerce-shipping-fields,
+.woocommerce-checkout .woocommerce-additional-fields {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    border-top: 4px solid #3498db;
+    transition: all 0.3s ease;
+}
+
+.woocommerce-checkout .woocommerce-billing-fields:hover,
+.woocommerce-checkout .woocommerce-shipping-fields:hover,
+.woocommerce-checkout .woocommerce-additional-fields:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Titres des sections */
+.woocommerce-checkout .woocommerce-billing-fields h3,
+.woocommerce-checkout #ship-to-different-address,
+.woocommerce-checkout .woocommerce-additional-fields h3 {
+    color: #3498db;
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Champs de formulaire */
+.woocommerce-checkout .form-row {
+    margin-bottom: 15px;
+}
+
+.woocommerce-checkout .form-row label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+    color: #555;
+}
+
+.woocommerce-checkout .form-row input,
+.woocommerce-checkout .form-row select,
+.woocommerce-checkout .form-row textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.woocommerce-checkout .form-row input:focus,
+.woocommerce-checkout .form-row select:focus,
+.woocommerce-checkout .form-row textarea:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    outline: none;
+    background-color: #fff;
+}
+
+/* Récapitulatif de commande */
+.woocommerce-checkout #order_review_heading {
+    color: #3498db;
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.woocommerce-checkout #order_review {
+    flex: 1;
+    min-width: 300px;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    border-top: 4px solid #3498db;
+    transition: all 0.3s ease;
+}
+
+.woocommerce-checkout #order_review:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Tableau de récapitulatif */
+.woocommerce-checkout-review-order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.woocommerce-checkout-review-order-table thead th {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    border-radius: 5px 5px 0 0;
+}
+
+.woocommerce-checkout-review-order-table tbody td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.woocommerce-checkout-review-order-table .product-name {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.woocommerce-checkout-review-order-table .product-total {
+    text-align: right;
+    font-weight: 600;
+    color: #3498db;
+}
+
+.woocommerce-checkout-review-order-table tfoot th {
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    font-weight: 600;
+    color: #555;
+}
+
+.woocommerce-checkout-review-order-table tfoot td {
+    text-align: right;
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    font-weight: 600;
+}
+
+.woocommerce-checkout-review-order-table tfoot .order-total th,
+.woocommerce-checkout-review-order-table tfoot .order-total td {
+    font-size: 18px;
+    color: #3498db;
+    border-top: 2px solid #eee;
+    padding-top: 20px;
+}
+
+/* Section de paiement */
+.woocommerce-checkout #payment {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #eee;
+}
+
+.woocommerce-checkout #payment ul.payment_methods {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.woocommerce-checkout #payment ul.payment_methods li {
+    padding: 10px 0;
+}
+
+.woocommerce-checkout #payment ul.payment_methods li input {
+    margin-right: 10px;
+}
+
+.woocommerce-checkout #payment ul.payment_methods li label {
+    font-weight: 600;
+    color: #555;
+}
+
+.woocommerce-checkout #payment div.payment_box {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+    border-left: 3px solid #3498db;
+}
+
+/* Bouton de commande */
+.woocommerce-checkout #payment .place-order {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.woocommerce-checkout #place_order {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+}
+
+.woocommerce-checkout #place_order:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Sélecteur de saison */
+.woocommerce-checkout select[name="fpr_selected_saison"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #3498db;
+}
+
+/* Animations */
+.woocommerce-checkout .woocommerce-billing-fields,
+.woocommerce-checkout .woocommerce-shipping-fields,
+.woocommerce-checkout .woocommerce-additional-fields,
+.woocommerce-checkout #order_review {
+    animation: fpr-fade-in 0.5s ease-in-out;
+}
+
+@keyframes fpr-fade-in {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Fix pour les doublons de cours dans le récapitulatif */
+.wc-block-components-product-details__cours-s-lectionn-1:not(:first-of-type),
+.wc-block-components-product-details__cours-s-lectionn-2:not(:first-of-type) {
+    display: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .woocommerce-checkout .woocommerce-checkout {
+        flex-direction: column;
+    }
+
+    .woocommerce-checkout .woocommerce-billing-fields,
+    .woocommerce-checkout .woocommerce-shipping-fields,
+    .woocommerce-checkout .woocommerce-additional-fields,
+    .woocommerce-checkout #order_review {
+        padding: 15px;
+    }
+
+    .woocommerce-checkout-review-order-table thead th,
+    .woocommerce-checkout-review-order-table tbody td,
+    .woocommerce-checkout-review-order-table tfoot th,
+    .woocommerce-checkout-review-order-table tfoot td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .woocommerce-checkout-review-order-table tfoot .order-total th,
+    .woocommerce-checkout-review-order-table tfoot .order-total td {
+        font-size: 16px;
+    }
+
+    .woocommerce-checkout #place_order {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
